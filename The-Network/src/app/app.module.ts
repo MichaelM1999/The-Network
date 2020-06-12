@@ -11,6 +11,7 @@ import { Crypto } from '../components/Crypto/crypto';
 import { Dashboard } from '../components/Dashboard/dashboard';
 import { Navbar } from '../components/navbar/navbar';
 import { Stocks } from '../components/Stocks/stocks';
+import { Graph } from '../components/graphs/graphs';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { Stocks } from '../components/Stocks/stocks';
     Dashboard,
     Navbar,
     Stocks,
+    Graph,
   ],
   imports: [
     BrowserModule,
