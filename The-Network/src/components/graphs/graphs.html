@@ -1,5 +1,9 @@
+<form #searchForm="ngForm" (ngSubmit)="handleSearch(searchForm.value)" autocomplete="off">
+    <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
+    <button type="submit" class="searchbuttonA" >Search</button>
+   
+</form>
 <div *ngIf="chart">
     <canvas id="canvas" width="400" height="400">{{ chart }}</canvas>
 </div>
-<button (click)='graph()'>follow</button>
 
