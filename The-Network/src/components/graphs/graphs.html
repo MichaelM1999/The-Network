@@ -3,7 +3,10 @@
     <button type="submit" class="searchbuttonA" >Search</button>
    
 </form>
-<div *ngIf="chart">
-    <canvas id="canvas" width="400" height="400">{{ chart }}</canvas>
+<div *ngIf="chart" style="width: 600px; height: 600px;">
+    <canvas id="canvas">{{ chart }}</canvas>
+</div>
+<div *ngIf="chart" style="width: 600px; height: 600px;">
+    <canvas id="canvas2">{{ chart }}</canvas>
 </div>
 
