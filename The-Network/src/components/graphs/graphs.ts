@@ -63,28 +63,28 @@ export class Graph implements OnInit{
             if (res["Error Message"]){
                 window.alert("Not a real stock name");
             } else {
-
-            
             let dailyseries = res["Time Series (Daily)"]
-
             for (let key in dailyseries){
                 dateArry.push([key][0])
                 priceArry.push(dailyseries[key]['4. close']);
             }
             reversePriceArry.push(priceArry.reverse())
             reverseDateArry.push(dateArry.reverse())
-            //date arrays
-            let weeklyDates = reverseDateArry[0].slice(92, 99)
-            let monthlyDates = reverseDateArry[0].slice(69, 99)
+
             let weeklyGraphInfo = {
-                Dates: weeklyDates,
+                Dates: reverseDateArry[0].slice(92, 99),
                 Data: (reversePriceArry[0].slice(92, 99)),
                 id: 'canvas'
             }
             let monthlyGraphInfo = {
-                Dates: monthlyDates,
+                Dates: reverseDateArry[0].slice(69, 99),
                 Data: (reversePriceArry[0].slice(69, 99)),
                 id: 'canvas2'
+            }
+            let maxPast = {
+                Dates: reverseDateArry[0].slice(0, 99),
+                Data: (reversePriceArry[0].slice(0, 99)),
+                id: 'canvas3'
             }
             //returning Graph Object
             this.returnedStock = {
@@ -100,6 +100,7 @@ export class Graph implements OnInit{
             }
             this.graph(weeklyGraphInfo);
             this.graph(monthlyGraphInfo);
+            this.graph(maxPast);
             }
         }
     )}
