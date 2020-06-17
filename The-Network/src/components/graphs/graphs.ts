@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
+import { StockData } from '../../injectables/stockdata';
 
 @Component ({
     selector: 'Graph',
@@ -8,6 +9,10 @@ import { Chart } from 'chart.js';
 }) 
 export class Graph implements OnInit{
     chart = [];
+
+    constructor(private StockData:StockData){
+
+    }
 
     ngOnInit (){
         

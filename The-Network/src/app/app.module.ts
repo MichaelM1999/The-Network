@@ -12,6 +12,8 @@ import { Dashboard } from '../components/Dashboard/dashboard';
 import { Navbar } from '../components/navbar/navbar';
 import { Stocks } from '../components/Stocks/stocks';
 import { Graph } from '../components/graphs/graphs';
+//injectables
+import { StockData } from '../injectables/stockdata';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { Graph } from '../components/graphs/graphs';
     HttpClientModule,
   ],
   providers: [
-
+    StockData,
   ],
   bootstrap: [AppComponent]
 })
