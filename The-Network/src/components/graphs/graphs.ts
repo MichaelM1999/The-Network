@@ -11,6 +11,7 @@ export class Graph implements OnInit{
     public returnedStock:any
     chart = [];
     chart2 = [];
+    graphed = false;
 
     constructor(private StockData:StockData){
 
@@ -20,6 +21,7 @@ export class Graph implements OnInit{
         
     }
     graph(stock) {
+        this.graphed = true;
         this.chart2 = new Chart(stock.id, {
             type: 'line',
             data: {
