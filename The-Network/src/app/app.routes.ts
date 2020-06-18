@@ -9,4 +9,5 @@ export const appRoutes:Routes = [
     { path: 'dashboard', component: Dashboard },
     { path: 'crypto', component: Crypto },
     { path: 'stocks', component: Stocks },
+    { path: 'searchStocks', component: Graph },
 ]
