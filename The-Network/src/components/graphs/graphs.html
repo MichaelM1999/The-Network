@@ -1,18 +1,52 @@
-<form #searchForm="ngForm" (ngSubmit)="handleSearch(searchForm.value)" autocomplete="off">
-    <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
-    <button type="submit" class="searchbuttonA" >Search</button>
-   
-</form>
-<h1 *ngIf="graphed === true" class="graphTitle">7-Days</h1>
-<div *ngIf="chart" style="width: 600px; height: 310px;">
-    <canvas id="canvas">{{ chart }}</canvas>
+<h1 class="MainTitle" style="margin-top: 2%;">Search By Symbol</h1>
+<div class="MainSearchBar" style="margin-top: 2%;">    
+    <form #searchForm="ngForm" (ngSubmit)="handleSearch(searchForm.value)" autocomplete="off">
+        <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
+        <button type="submit" class="searchbuttonA" >Search</button>
+    </form>
+    <div *ngIf="returnedStock" class="currentVal">
+        <div>Current Value: {{returnedStock?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</div>
+        
+    </div>
+    <div *ngIf="returnedStock" class="row">
+        <div class="column">
+                <div>Daily change: <span [ngClass]="{ 'positive': returnedStock.dailychangeCheck === 1, 'negative': returnedStock.dailychangeCheck === -1}">
+                    <span *ngIf="returnedStock.dailychangeCheck === 1">+</span>{{returnedStock?.dailychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+        <div class="column">
+                <div>Weekly change: <span [ngClass]="{ 'positive': returnedStock.weeklychangeCheck === 1, 'negative': returnedStock.weeklychangeCheck === -1}">
+                    <span *ngIf="returnedStock.weeklychangeCheck === 1">+</span>{{returnedStock?.weeklychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+        <div class="column">
+                <div>Monthly change: <span [ngClass]="{ 'positive': returnedStock.monthlychangeCheck === 1, 'negative': returnedStock.monthlychangeCheck === -1}">
+                    <span *ngIf="returnedStock.monthlychangeCheck === 1">+</span>{{returnedStock?.monthlychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+    </div>
 </div>
-<h1 *ngIf="graphed === true" class="graphTitle">30-Days</h1>
-<div *ngIf="chart" style="width: 600px; height: 310px;">
-    <canvas id="canvas2">{{ chart }}</canvas>
-</div>
-<h1 *ngIf="graphed === true" class="graphTitle">100-Days</h1>
-<div *ngIf="chart" style="width: 600px; height: 310px;">
-    <canvas id="canvas3">{{ chart }}</canvas>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="text-align: center;">
+                <h1 *ngIf="graphed === true" class="graphTitle">7-Days</h1>
+                <div *ngIf="chart" style="width: 500px; height: 310px;">
+                    <canvas id="canvas">{{ chart }}</canvas>
+                </div>
+            </div>
+            <div class="col" style="text-align: center;">
+                <h1 *ngIf="graphed === true" class="graphTitle">30-Days</h1>
+                <div *ngIf="chart" style="width: 500px; height: 310px;">
+                    <canvas id="canvas2">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="position: relative; left: 15%;">
+                <h1 *ngIf="graphed === true" class="graphTitle" style="position: relative;left: 20%;">100-Days</h1>
+                <div *ngIf="chart" style="width: 600px; height: 310px;">
+                    <canvas id="canvas3">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    
+    
