@@ -1,9 +1,27 @@
 <h1 class="MainTitle" style="margin-top: 2%;">Search By Symbol</h1>
 <div class="MainSearchBar" style="margin-top: 2%;">    
     <form #searchForm="ngForm" (ngSubmit)="handleSearch(searchForm.value)" autocomplete="off">
-        <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
-        <button type="submit" class="searchbuttonA" >Search</button>
+        <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Crypto Symbol" class="searchInput">
+        <button type="submit" class="searchbuttonA">Search</button>
     </form>
+    <div *ngIf="cryptoData" class="currentVal">
+        <div>Current Value: {{cryptoData?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</div>
+        
+    </div>
+    <div *ngIf="cryptoData" class="row">
+        <div class="column">
+                <div>Daily change: <span [ngClass]="{ 'positive': cryptoData.dailychangeCheck === 1, 'negative': cryptoData.dailychangeCheck === -1}">
+                    <span *ngIf="cryptoData.dailychangeCheck === 1">+</span>{{cryptoData?.dailychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+        <div class="column">
+                <div>Weekly change: <span [ngClass]="{ 'positive': cryptoData.weeklychangeCheck === 1, 'negative': cryptoData.weeklychangeCheck === -1}">
+                    <span *ngIf="cryptoData.weeklychangeCheck === 1">+</span>{{cryptoData?.weeklychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+        <div class="column">
+                <div>Monthly change: <span [ngClass]="{ 'positive': cryptoData.monthlychangeCheck === 1, 'negative': cryptoData.monthlychangeCheck === -1}">
+                    <span *ngIf="cryptoData.monthlychangeCheck === 1">+</span>{{cryptoData?.monthlychange | currency:'USD' : 'symbol' : '1.3-5'}}</span></div>
+        </div>
+    </div>
 </div>
     <div class="container">
         <div class="row">

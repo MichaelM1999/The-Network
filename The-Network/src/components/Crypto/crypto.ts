@@ -56,18 +56,15 @@ export class Crypto {
         let dateARRY;
         let newDATES = [];
 
-        console.log(newDATES);
         this.CryptoData.getCryptoWeek(searchItem).subscribe((res) => {
             if (Object.keys(res).length === 0){
                 window.alert("Enter a valid CryptoCurrency");
             } else {
-            console.log(res);
             pricesARRY = res['0']['prices'];
             dateARRY = res['0']['timestamps'];
             for (let i = 0; i < dateARRY.length; i ++){
                 newDATES.push(dateARRY[i].substring(0,10));
             }
-            console.log(dateARRY);
             let weeklyGraphInfo = {
                 Dates: newDATES.slice(32, 39),
                 Data: (pricesARRY.slice(32, 39)),
@@ -83,6 +80,16 @@ export class Crypto {
                 Data: (pricesARRY.slice(0, 39)),
                 id: 'canvas3'
             }
+            this.cryptoData = {
+                dailychange: ((pricesARRY[39])-(pricesARRY[38])),
+                dailychangeCheck: Math.sign((pricesARRY[39])-(pricesARRY[38])),
+                weeklychange: ((pricesARRY[39])-(pricesARRY[32])).toString().slice(0,8),
+                weeklychangeCheck: Math.sign((pricesARRY[39])-(pricesARRY[32])),
+                monthlychange: ((pricesARRY[39])-(pricesARRY[9])).toString().slice(0,8),
+                monthlychangeCheck: Math.sign((pricesARRY[39])-(pricesARRY[9])),
+                currentValue: (pricesARRY[39]),
+            }
+            console.log(pricesARRY[39]);
             this.graph(weeklyGraphInfo);
             this.graph(monthlyGraphInfo);
             this.graph(maxPast);
