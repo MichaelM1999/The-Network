@@ -4,3 +4,27 @@
         <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
         <button type="submit" class="searchbuttonA" >Search</button>
     </form>
+    <div class="container">
+        <div class="row">
+            <div class="col" style="text-align: center;">
+                <h1 *ngIf="graphed === true" class="graphTitle">7-Days</h1>
+                <div *ngIf="chart" style="width: 500px; height: 310px;">
+                    <canvas id="canvas">{{ chart }}</canvas>
+                </div>
+            </div>
+            <div class="col" style="text-align: center;">
+                <h1 *ngIf="graphed === true" class="graphTitle">30-Days</h1>
+                <div *ngIf="chart" style="width: 500px; height: 310px;">
+                    <canvas id="canvas2">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="position: relative; left: 15%;">
+                <h1 *ngIf="graphed === true" class="graphTitle" style="position: relative;left: 20%;">50-Days</h1>
+                <div *ngIf="chart" style="width: 600px; height: 310px;">
+                    <canvas id="canvas3">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
