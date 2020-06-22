@@ -58,6 +58,9 @@ export class Crypto {
 
         console.log(newDATES);
         this.CryptoData.getCryptoWeek(searchItem).subscribe((res) => {
+            if (Object.keys(res).length === 0){
+                window.alert("Enter a valid CryptoCurrency");
+            } else {
             console.log(res);
             pricesARRY = res['0']['prices'];
             dateARRY = res['0']['timestamps'];
@@ -83,6 +86,7 @@ export class Crypto {
             this.graph(weeklyGraphInfo);
             this.graph(monthlyGraphInfo);
             this.graph(maxPast);
+        }
         })
     }
 }

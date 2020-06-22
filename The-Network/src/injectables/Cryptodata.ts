@@ -29,7 +29,7 @@ export class CrytoData {
         const STARTDATE = this.ISODateString(FiftyDaysAgo);
         console.log(STARTDATE);
         const APIKEY = "f93f4af9f98fe883e5fbac5d4d8de8b2";
-        let query = BASEURL + APIKEY + BASEURL2 + searchItem.searchInput + "&start=" + STARTDATE + "&end=" + TODAYSDATE;
+        let query = BASEURL + APIKEY + BASEURL2 + searchItem.searchInput.toUpperCase( ) + "&start=" + STARTDATE + "&end=" + TODAYSDATE;
          return this.http.get(query);   
     }
 }
