@@ -1,3 +1,6 @@
-<div>
-    Crypto
-</div>
+<h1 class="MainTitle" style="margin-top: 2%;">Search By Symbol</h1>
+<div class="MainSearchBar" style="margin-top: 2%;">    
+    <form #searchForm="ngForm" (ngSubmit)="handleSearch(searchForm.value)" autocomplete="off">
+        <input #textform [(ngModel)]="searchInput" name="searchInput" type="text" placeholder="Stock Symbol" class="searchInput">
+        <button type="submit" class="searchbuttonA" >Search</button>
+    </form>

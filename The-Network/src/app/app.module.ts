@@ -14,6 +14,7 @@ import { Stocks } from '../components/Stocks/stocks';
 import { Graph } from '../components/graphs/graphs';
 //injectables
 import { StockData } from '../injectables/stockdata';
+import { CrytoData } from '../injectables/Cryptodata';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StockData } from '../injectables/stockdata';
   ],
   providers: [
     StockData,
+    CrytoData,
   ],
   bootstrap: [AppComponent]
 })
