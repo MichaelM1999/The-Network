@@ -9,11 +9,24 @@ import { Chart } from 'chart.js';
 })
 export class Crypto {
     public cryptoData:any;
+    public Title = "7-Days";
     graphed = false;
     chart = [];
     chart2 = [];
     constructor(private CryptoData:CrytoData){
 
+    }
+    graphSwitch(graphValue){
+        if (graphValue === 7){
+            this.graph(this.cryptoData.weeklyGraphInfo);
+            this.Title = "7-Days";
+        } else if (graphValue === 30){
+            this.graph(this.cryptoData.monthlyGraphInfo);
+            this.Title = "30-Days";
+        } else if (graphValue === 40){
+            this.graph(this.cryptoData.maxPast);
+            this.Title = "40-Days";
+        }
     }
     graph(Data){
         this.graphed = true;
@@ -73,14 +86,17 @@ export class Crypto {
             let monthlyGraphInfo = {
                 Dates: newDATES.slice(9, 39),
                 Data: (pricesARRY.slice(9, 39)),
-                id: 'canvas2'
+                id: 'canvas'
             }
             let maxPast = {
                 Dates: newDATES.slice(0, 39),
                 Data: (pricesARRY.slice(0, 39)),
-                id: 'canvas3'
+                id: 'canvas'
             }
             this.cryptoData = {
+                weeklyGraphInfo: weeklyGraphInfo,
+                monthlyGraphInfo: monthlyGraphInfo,
+                maxPast: maxPast,
                 dailychange: ((pricesARRY[39])-(pricesARRY[38])),
                 dailychangeCheck: Math.sign((pricesARRY[39])-(pricesARRY[38])),
                 weeklychange: ((pricesARRY[39])-(pricesARRY[32])).toString().slice(0,8),
@@ -89,10 +105,7 @@ export class Crypto {
                 monthlychangeCheck: Math.sign((pricesARRY[39])-(pricesARRY[9])),
                 currentValue: (pricesARRY[39]),
             }
-            console.log(pricesARRY[39]);
-            this.graph(weeklyGraphInfo);
-            this.graph(monthlyGraphInfo);
-            this.graph(maxPast);
+            this.graph(this.cryptoData.weeklyGraphInfo);
         }
         })
     }

@@ -26,26 +26,29 @@
     <div class="container">
         <div class="row">
             <div class="col" style="text-align: center;">
-                <h1 *ngIf="graphed === true" class="graphTitle">7-Days</h1>
-                <div *ngIf="chart" style="width: 500px; height: 310px;">
+                <h1 *ngIf="graphed === true" class="graphTitle">{{ Title }}</h1>
+                <div *ngIf="chart" style="width: 500px; height: 310px; margin-left: 27%;">
                     <canvas id="canvas">{{ chart }}</canvas>
                 </div>
+                <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="7-days" (click)='graphSwitch(7)'>7-Days</button>
+                <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="30-days" (click)='graphSwitch(30)'>30-Days</button>
+                <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="40-days" (click)='graphSwitch(100)'>100-Days</button>
             </div>
-            <div class="col" style="text-align: center;">
+            <!-- <div class="col" style="text-align: center;">
                 <h1 *ngIf="graphed === true" class="graphTitle">30-Days</h1>
                 <div *ngIf="chart" style="width: 500px; height: 310px;">
                     <canvas id="canvas2">{{ chart }}</canvas>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col" style="position: relative; left: 15%;">
                 <h1 *ngIf="graphed === true" class="graphTitle" style="position: relative;left: 20%;">100-Days</h1>
                 <div *ngIf="chart" style="width: 600px; height: 310px;">
                     <canvas id="canvas3">{{ chart }}</canvas>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     

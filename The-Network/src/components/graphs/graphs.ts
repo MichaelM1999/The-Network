@@ -9,6 +9,7 @@ import { StockData } from '../../injectables/stockdata';
 }) 
 export class Graph implements OnInit{
     public returnedStock:any
+    public Title = '7-Days';
     chart = [];
     chart2 = [];
     graphed = false;
@@ -19,6 +20,18 @@ export class Graph implements OnInit{
 
     ngOnInit (){
         
+    }
+    graphSwitch(graphValue){
+        if (graphValue === 7){
+            this.graph(this.returnedStock.weeklyGraphInfo);
+            this.Title = "7-Days";
+        } else if (graphValue === 30){
+            this.graph(this.returnedStock.monthlyGraphInfo);
+            this.Title = "30-Days";
+        } else if (graphValue === 100){
+            this.graph(this.returnedStock.maxPast);
+            this.Title = "100-Days";
+        }
     }
     graph(stock) {
         this.graphed = true;
@@ -81,17 +94,20 @@ export class Graph implements OnInit{
             let monthlyGraphInfo = {
                 Dates: reverseDateArry[0].slice(69, 99),
                 Data: (reversePriceArry[0].slice(69, 99)),
-                id: 'canvas2'
+                id: 'canvas'
             }
             let maxPast = {
                 Dates: reverseDateArry[0].slice(0, 99),
                 Data: (reversePriceArry[0].slice(0, 99)),
-                id: 'canvas3'
+                id: 'canvas'
             }
             //returning Graph Object
             this.returnedStock = {
                 priceArry,
                 dateArry,
+                weeklyGraphInfo: weeklyGraphInfo,
+                monthlyGraphInfo: monthlyGraphInfo,
+                maxPast: maxPast,
                 dailychange: ((reversePriceArry[0][99])-(reversePriceArry[0][98])).toString().slice(0,8),
                 dailychangeCheck: Math.sign((reversePriceArry[0][99])-(reversePriceArry[0][98])),
                 weeklychange: ((reversePriceArry[0][99])-(reversePriceArry[0][92])).toString().slice(0,8),
@@ -100,9 +116,8 @@ export class Graph implements OnInit{
                 monthlychangeCheck: Math.sign((reversePriceArry[0][99])-(reversePriceArry[0][69])),
                 currentValue: (reversePriceArry[0][99]),
             }
-            this.graph(weeklyGraphInfo);
-            this.graph(monthlyGraphInfo);
-            this.graph(maxPast);
+            this.graph(this.returnedStock.weeklyGraphInfo);
+
             }
         }
     )}
