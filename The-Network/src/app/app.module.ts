@@ -12,6 +12,7 @@ import { Dashboard } from '../components/Dashboard/dashboard';
 import { Navbar } from '../components/navbar/navbar';
 import { Stocks } from '../components/Stocks/stocks';
 import { Graph } from '../components/graphs/graphs';
+import { AdminLogin } from '../components/adminLogin/adminLogin';
 //injectables
 import { StockData } from '../injectables/stockdata';
 import { CrytoData } from '../injectables/Cryptodata';
@@ -24,6 +25,7 @@ import { CrytoData } from '../injectables/Cryptodata';
     Navbar,
     Stocks,
     Graph,
+    AdminLogin
   ],
   imports: [
     BrowserModule,

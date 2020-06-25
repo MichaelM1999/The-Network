@@ -3,6 +3,7 @@ import { Dashboard } from '../components/Dashboard/dashboard';
 import { Stocks } from '../components/Stocks/stocks';
 import { Crypto } from '../components/Crypto/crypto';
 import { Graph } from '../components/graphs/graphs';
+import { AdminLogin } from '../components/adminLogin/adminLogin';
 
 export const appRoutes:Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -10,4 +11,5 @@ export const appRoutes:Routes = [
     { path: 'crypto', component: Crypto },
     { path: 'stocks', component: Stocks },
     { path: 'searchStocks', component: Graph },
+    { path: 'login', component: AdminLogin },
 ]

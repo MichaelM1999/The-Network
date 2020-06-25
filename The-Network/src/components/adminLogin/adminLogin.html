@@ -1,0 +1,5 @@
+<form #searchForm="ngForm" (ngSubmit)="handleLogin(searchForm.value)" autocomplete="off">
+    <input #textform [(ngModel)]="Login" name="username" type="text" placeholder="username" class="searchInput">
+    <input #textform [(ngModel)]="password" name="password" type="text" placeholder="password" class="searchInput">
+    <button type="submit" class="searchbuttonA">Login</button>
+</form>
