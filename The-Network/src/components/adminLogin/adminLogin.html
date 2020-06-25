@@ -1,5 +1,8 @@
-<form #searchForm="ngForm" (ngSubmit)="handleLogin(searchForm.value)" autocomplete="off">
-    <input #textform [(ngModel)]="Login" name="username" type="text" placeholder="username" class="searchInput">
-    <input #textform [(ngModel)]="password" name="password" type="text" placeholder="password" class="searchInput">
-    <button type="submit" class="searchbuttonA">Login</button>
-</form>
+<div class="loginform" style="margin-top: 10%; margin-left: 35%; width: fit-content; padding: 10px; background-color: lightslategray;">
+    <h2 class="title" style="text-align: center; color: white;">Admin Login</h2>
+    <form #searchForm="ngForm" (ngSubmit)="handleLogin(searchForm.value)" autocomplete="off">
+        <input style="margin-right: 5px;" #textform [(ngModel)]="Login" name="username" type="text" placeholder="Username" class="searchInput">
+        <input #textform [(ngModel)]="password" name="password" type="text" placeholder="Password" class="searchInput">
+        <button type="submit" class="searchbuttonA">Login</button>
+    </form>
+</div>
