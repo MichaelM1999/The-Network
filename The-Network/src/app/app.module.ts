@@ -13,6 +13,8 @@ import { Navbar } from '../components/navbar/navbar';
 import { Stocks } from '../components/Stocks/stocks';
 import { Graph } from '../components/graphs/graphs';
 import { AdminLogin } from '../components/adminLogin/adminLogin';
+import { StockThumbnailComponent } from '../components/Stocks/stock-thumbnail';
+import { StockDetailsComponent } from '../components/StockDetails/stockdetail';
 //injectables
 import { StockData } from '../injectables/stockdata';
 import { CrytoData } from '../injectables/Cryptodata';
@@ -25,7 +27,9 @@ import { CrytoData } from '../injectables/Cryptodata';
     Navbar,
     Stocks,
     Graph,
-    AdminLogin
+    AdminLogin,
+    StockThumbnailComponent,
+    StockDetailsComponent,
   ],
   imports: [
     BrowserModule,

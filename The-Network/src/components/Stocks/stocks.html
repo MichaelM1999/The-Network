@@ -1,3 +1,8 @@
 <div>
-    Stocks
+    <h1>Welcome to The Networks Stock Watchlist</h1>
 </div>
+<div *ngIf="this.Defined === false" class="nonFollowedBox">
+    <h1>You are currently not following any stocks! click here to find some</h1>
+        <button class="searchbuttonA" [routerLink]="['/home']">HERE!</button>
+</div>
+<stock-thumbnail *ngFor="let Stock of Stocks" [Stock]='Stock'></stock-thumbnail>
