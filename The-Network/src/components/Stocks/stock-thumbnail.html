@@ -5,6 +5,6 @@
     </div>
     <div class="btnBar">
             <button class="optbutton" value="Add" [routerLink]="['/stocks', Stock.symbol]"><span>View</span></button>
-            <button class="optbutton" value="Delete" (click)="handleUnfollow(stockName.value)"><span>Remove</span></button>
+            <button *ngIf="admin === true" class="optbutton" value="Delete" (click)="handleUnfollow(stockName.value)"><span>Remove</span></button>
         </div>
 </div>
