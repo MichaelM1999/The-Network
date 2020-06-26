@@ -20,6 +20,7 @@ export class CrytoData {
        
        
     getCryptoWeek(searchItem): Observable<object>{
+        console.log(searchItem);
         var d = new Date();
         var FiftyDaysAgo = new Date();
         FiftyDaysAgo.setDate(FiftyDaysAgo.getDate() - 40);
@@ -30,6 +31,20 @@ export class CrytoData {
         console.log(STARTDATE);
         const APIKEY = "f93f4af9f98fe883e5fbac5d4d8de8b2";
         let query = BASEURL + APIKEY + BASEURL2 + searchItem.searchInput.toUpperCase( ) + "&start=" + STARTDATE + "&end=" + TODAYSDATE;
+         return this.http.get(query);   
+    }
+    getCryptoWeekAuto(searchItem): Observable<object>{
+        console.log(searchItem);
+        var d = new Date();
+        var FiftyDaysAgo = new Date();
+        FiftyDaysAgo.setDate(FiftyDaysAgo.getDate() - 40);
+        const BASEURL = "https://api.nomics.com/v1/currencies/sparkline?key=";
+        const BASEURL2 = "&ids=";
+        const TODAYSDATE = this.ISODateString(d);
+        const STARTDATE = this.ISODateString(FiftyDaysAgo);
+        console.log(STARTDATE);
+        const APIKEY = "f93f4af9f98fe883e5fbac5d4d8de8b2";
+        let query = BASEURL + APIKEY + BASEURL2 + searchItem + "&start=" + STARTDATE + "&end=" + TODAYSDATE;
          return this.http.get(query);   
     }
 }

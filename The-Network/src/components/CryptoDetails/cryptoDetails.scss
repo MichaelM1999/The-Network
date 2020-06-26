@@ -1,0 +1,34 @@
+.searchbuttonA{
+    margin-top: 10px;
+    margin-left: 5px;
+    height: 30px;
+    background: lightskyblue;
+    border: 1px solid white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    color: black;
+    transition: 0.8s;
+    position: relative;
+    overflow: hidden;
+}
+.searchbuttonA:hover{
+    color: lightskyblue;  
+}
+.searchbuttonA::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: white;
+    z-index: -1;
+    transition: 0.8s;
+}
+.searchbuttonA::before{
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+}
+.searchbuttonA:hover::before{
+    height: 180%;
+}

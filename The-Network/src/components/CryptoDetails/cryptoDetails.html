@@ -1,3 +1,20 @@
 <div>
-    <h1>{{ crypto?.name }}</h1>
+    <h1>{{ returnedCrypto?.name }}</h1>
+</div>
+
+<h2 class="stocktxt">Current Value: {{ returnedCrypto?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</h2>
+<h2 class="stocktxt">Percentage Change &#40;Daily&#41;: {{ returnedCrypto.dailyPercentage | percent:'1.3-5'}}<h2>
+<h2 class="stocktxt">Percentage Change &#40;Meekly&#41;: {{ returnedCrypto.weeklyPercentage | percent:'1.3-5'}}<h2></h2>
+<h2 class="stocktxt">Percentage Change &#40;Monthly&#41;: {{ returnedCrypto.monthlyPercentage | percent:'1.3-5'}}<h2></h2>
+
+<div class="graphBox">
+    <h3 style="text-align: center;">{{ Title }}</h3>
+    <div *ngIf="chart" style="width: 500px; height: 310px; margin-left: 33%;">
+        <canvas id="canvas">{{ chart }}</canvas>
+    </div>
+    <div class="buttonBar" style="margin-left: 40%;">
+        <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="7-days" (click)='graphSwitch(7)'>7-Days</button>
+        <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="30-days" (click)='graphSwitch(30)'>30-Days</button>
+        <button style="margin-top: 0;" *ngIf="graphed === true" type="button" class="searchbuttonA" value="40-days" (click)='graphSwitch(40)'>40-Days</button>
+    </div>
 </div>
