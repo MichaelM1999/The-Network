@@ -4,10 +4,13 @@ import { StockData } from '../../injectables/stockdata';
 import { Chart } from 'chart.js';
 
 @Component({
-    templateUrl:'./stockDetails.html'
+    templateUrl:'./stockDetails.html',
+    styleUrls:['./stockDetails.scss'],
 })
 export class StockDetailsComponent {
-    public returnedStock: any
+    public returnedStock: any;
+    public Title = '7-Days';
+    graphed = false;
     stock:any
     chart = [];
     chart2 =[];
@@ -19,6 +22,54 @@ export class StockDetailsComponent {
         this.stock = (this.route.snapshot.params['name'])
         this.stockInfo(this.stock)
     } 
+    graphSwitch(graphValue){
+        if (graphValue === 7){
+            this.graph(this.returnedStock.weeklyGraphInfo);
+            this.Title = "7-Days";
+        } else if (graphValue === 30){
+            this.graph(this.returnedStock.monthlyGraphInfo);
+            this.Title = "30-Days";
+        } else if (graphValue === 100){
+            this.graph(this.returnedStock.maxPast);
+            this.Title = "100-Days";
+        }
+    }
+    graph(stock) {
+        this.graphed = true;
+        this.chart2 = new Chart(stock.id, {
+            type: 'line',
+            data: {
+                labels: stock.Dates,
+                datasets: [{
+                    label: 'Value in USD$',
+                    data: stock.Data,
+                    backgroundColor: [
+                        'rgba(10, 245, 155, 0.2)',
+                        'rgba(10, 245, 155, 0.2)',
+                        'rgba(10, 245, 155, 0.2)',
+                        'rgba(10, 245, 155, 0.2)',
+                        'rgba(10, 245, 155, 0.2)',
+                        'rgba(10, 245, 155, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)',
+                        'rgba(0, 0, 0, 1)'
+                    ],
+                    borderWidth: 1
+                    }]
+                },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                }}]}}
+                }) 
+    }
     stockInfo(searchItem){
         const priceArry = []
         const dateArry = []
@@ -42,10 +93,29 @@ export class StockDetailsComponent {
 
             let weeklyDates = reverseDateArry[0].slice(92, 99)
             let monthlyDates = reverseDateArry[0].slice(69, 99)
+            
+            let weeklyGraphInfo = {
+                Dates: reverseDateArry[0].slice(92, 99),
+                Data: (reversePriceArry[0].slice(92, 99)),
+                id: 'canvas'
+            }
+            let monthlyGraphInfo = {
+                Dates: reverseDateArry[0].slice(69, 99),
+                Data: (reversePriceArry[0].slice(69, 99)),
+                id: 'canvas'
+            }
+            let maxPast = {
+                Dates: reverseDateArry[0].slice(0, 99),
+                Data: (reversePriceArry[0].slice(0, 99)),
+                id: 'canvas'
+            }
 
             this.returnedStock = {
                 priceArry,
                 dateArry,
+                weeklyGraphInfo: weeklyGraphInfo,
+                monthlyGraphInfo: monthlyGraphInfo,
+                maxPast: maxPast,
                 dailychange: ((reversePriceArry[0][99])-(reversePriceArry[0][98])).toString().slice(0,8),
                 dailychangeCheck: Math.sign((reversePriceArry[0][99])-(reversePriceArry[0][98])),
                 weeklychange: ((reversePriceArry[0][99])-(reversePriceArry[0][92])).toString().slice(0,8),
@@ -57,76 +127,10 @@ export class StockDetailsComponent {
                 monthlyDates: (monthlyDates),
                 monthlyData: (reversePriceArry[0].slice(69, 99)),
                 currentValue: (reversePriceArry[0][99]),
-                // symbol: res["Meta Data"]["2. Symbol"],
                 volume: reverseVolumeArry[0][99],
                 dailyPercentage: ((reversePriceArry[0][98])/(reversePriceArry[0][99])-1),
             }
-            this.chart = new Chart('canvas', {
-                type: 'line',
-                data: {
-                    labels: this.returnedStock.weeklyDates,
-                    datasets: [{
-                        label: 'Value in USD$',
-                        data: this.returnedStock.weeklyData,
-                        backgroundColor: [
-                            'rgba(10, 245, 155, 0.2)',
-                            'rgba(10, 245, 155, 0.2)',
-                            'rgba(10, 245, 155, 0.2)',
-                            'rgba(10, 245, 155, 0.2)',
-                            'rgba(10, 245, 155, 0.2)',
-                            'rgba(10, 245, 155, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(0, 0, 0, 1)',
-                            'rgba(0, 0, 0, 1)',
-                            'rgba(0, 0, 0, 1)',
-                            'rgba(0, 0, 0, 1)',
-                            'rgba(0, 0, 0, 1)',
-                            'rgba(0, 0, 0, 1)'
-                        ],
-                        borderWidth: 1
-                        }]
-                    },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                }}]}}
-                })
-                this.chart2 = new Chart('canvas2', {
-                    type: 'line',
-                    data: {
-                        labels: this.returnedStock.monthlyDates,
-                        datasets: [{
-                            label: 'Value in USD$',
-                            data: this.returnedStock.monthlyData,
-                            backgroundColor: [
-                                'rgba(10, 245, 155, 0.2)',
-                                'rgba(10, 245, 155, 0.2)',
-                                'rgba(10, 245, 155, 0.2)',
-                                'rgba(10, 245, 155, 0.2)',
-                                'rgba(10, 245, 155, 0.2)',
-                                'rgba(10, 245, 155, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(0, 0, 0, 1)',
-                                'rgba(0, 0, 0, 1)',
-                                'rgba(0, 0, 0, 1)',
-                                'rgba(0, 0, 0, 1)',
-                                'rgba(0, 0, 0, 1)',
-                                'rgba(0, 0, 0, 1)'
-                            ],
-                            borderWidth: 1
-                            }]
-                        },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                        }}]}}
-                        }) 
+            this.graph(this.returnedStock.weeklyGraphInfo);
             }
     )
     }  
