@@ -1,0 +1,10 @@
+<div class="stockbx">
+    <h3 class="stockName" #stockName>Stock Name: {{ Crypto.symbol }}</h3>
+    <div class="infoWrap">
+        <p class="stocksymbol stocktxt">The Networks Notes: {{ Crypto.notes }}</p>
+    </div>
+    <div class="btnBar">
+            <button class="optbutton" value="Add" [routerLink]="['/cryptos', Crypto.symbol]"><span>View</span></button>
+            <button *ngIf="admin === true" class="optbutton" value="Delete" (click)="handleUnfollow(stockName.value)"><span>Remove</span></button>
+        </div>
+</div>

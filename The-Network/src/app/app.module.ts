@@ -15,6 +15,9 @@ import { Graph } from '../components/graphs/graphs';
 import { AdminLogin } from '../components/adminLogin/adminLogin';
 import { StockThumbnailComponent } from '../components/Stocks/stock-thumbnail';
 import { StockDetailsComponent } from '../components/StockDetails/stockdetail';
+import { CryptoWL } from '../components/cryptoWL/cryptoWL';
+import { CryptoThumbnailComponent } from '../components/cryptoWL/crypto-thumbnail';
+import { CryptoDetailsComponent } from '../components/CryptoDetails/cryptoDetails';
 //injectables
 import { StockData } from '../injectables/stockdata';
 import { CrytoData } from '../injectables/Cryptodata';
@@ -30,6 +33,10 @@ import { CrytoData } from '../injectables/Cryptodata';
     AdminLogin,
     StockThumbnailComponent,
     StockDetailsComponent,
+    CryptoWL,
+    CryptoThumbnailComponent,
+    CryptoDetailsComponent,
+    
   ],
   imports: [
     BrowserModule,
