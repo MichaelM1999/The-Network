@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'crypto-thumbnail',
-    templateUrl: './crypto-thumbnail.html'
+    templateUrl: './crypto-thumbnail.html',
+    styleUrls: ['../Stocks/stock-thumbnail.scss'],
 })
 export class CryptoThumbnailComponent implements OnInit{
     @Input() Crypto:any

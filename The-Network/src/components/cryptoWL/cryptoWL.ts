@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component ({
     selector: 'CryptoWL',
     templateUrl: './cryptoWL.html',
+    styleUrls: ['./cryptoWL.scss'],
 })
 export class CryptoWL implements OnInit{
     Cryptos:any

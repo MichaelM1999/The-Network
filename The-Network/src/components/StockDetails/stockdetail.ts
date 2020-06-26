@@ -112,6 +112,7 @@ export class StockDetailsComponent {
 
             this.returnedStock = {
                 priceArry,
+                name:searchItem,
                 dateArry,
                 weeklyGraphInfo: weeklyGraphInfo,
                 monthlyGraphInfo: monthlyGraphInfo,

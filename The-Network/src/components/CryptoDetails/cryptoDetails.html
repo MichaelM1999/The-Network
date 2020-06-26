@@ -1,12 +1,13 @@
-<div>
-    <h1>{{ returnedCrypto?.name }}</h1>
+
+    <h1 class="MainTitle">{{ returnedCrypto?.name }}</h1>
+<div class="infoBox">
+    <div class="infoWrap">
+        <h2 class="stocktxt">Current Value: {{ returnedCrypto?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</h2>
+        <h2 class="stocktxt">Percentage Change &#40;Daily&#41;: {{ returnedCrypto.dailyPercentage | percent:'1.3-5'}}</h2>
+        <h2 class="stocktxt">Percentage Change &#40;Meekly&#41;: {{ returnedCrypto.weeklyPercentage | percent:'1.3-5'}}</h2>
+        <h2 class="stocktxt">Percentage Change &#40;Monthly&#41;: {{ returnedCrypto.monthlyPercentage | percent:'1.3-5'}}</h2>
+    </div>
 </div>
-
-<h2 class="stocktxt">Current Value: {{ returnedCrypto?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</h2>
-<h2 class="stocktxt">Percentage Change &#40;Daily&#41;: {{ returnedCrypto.dailyPercentage | percent:'1.3-5'}}<h2>
-<h2 class="stocktxt">Percentage Change &#40;Meekly&#41;: {{ returnedCrypto.weeklyPercentage | percent:'1.3-5'}}<h2></h2>
-<h2 class="stocktxt">Percentage Change &#40;Monthly&#41;: {{ returnedCrypto.monthlyPercentage | percent:'1.3-5'}}<h2></h2>
-
 <div class="graphBox">
     <h3 style="text-align: center;">{{ Title }}</h3>
     <div *ngIf="chart" style="width: 500px; height: 310px; margin-left: 33%;">

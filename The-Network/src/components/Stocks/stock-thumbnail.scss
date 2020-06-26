@@ -32,18 +32,15 @@
 .searchbuttonA:hover::before{
     height: 180%;
 }
-.MainTitle {
-    font-family: sans-serif;
-    color: #3B5998;
-}
-.infoBox{
+.stockbx{
     background-color: lightslategray;
-    padding: 10px;
-    font-family: sans-serif;
+    margin-top: 12px;
+    padding: 8px;
+    padding-bottom: 6px;
 }
-.infoWrap{
+.innerbox {
     background-color: white;
+    width: 30%;
+    border-radius: 3px;
     padding: 5px;
-    border-radius: 5px;
-    width: 45%;
 }
