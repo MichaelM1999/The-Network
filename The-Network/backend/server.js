@@ -1,43 +1,27 @@
 const express = require('express')
 const cors = require('cors');
 const bodyParser = require("body-parser");
-var path = require('path');
-const routes = require("./routes");
-const Models = require('./models/index');
+const routes = require("../backend/routes");
 
-AKIAUCRMCL4Z5APAEU4R
+var PORT = 4202;
+const router = express.Router();
+const app = express()
+app.use(cors());
+app.use(bodyParser.json());
 
-mcCKnwpi4QOYhBtA+WeCc9Ghr+vJLY3+MuZiihb
 
-var AWS = require("aws-sdk");
+// Serve only the static files form the dist directory
+// const distDir = __dirname + "/dist/";
+// app.use(express.static(distDir));
 
-AWS.config.update({
-  region: "us-west-2",
-  endpoint: "http://localhost:8000"
-});
+// /* final catch-all route to index.html defined last */
+// app.get('/*', (req, res) => {
+//     res.sendFile(__dirname + "/dist/"+'/index.html');
+//   })
 
-var dynamodb = new AWS.DynamoDB();
 
-var params = {
-    TableName : "Movies",
-    KeySchema: [       
-        { AttributeName: "year", KeyType: "HASH"},  //Partition key
-        { AttributeName: "title", KeyType: "RANGE" }  //Sort key
-    ],
-    AttributeDefinitions: [       
-        { AttributeName: "year", AttributeType: "N" },
-        { AttributeName: "title", AttributeType: "S" }
-    ],
-    ProvisionedThroughput: {       
-        ReadCapacityUnits: 10, 
-        WriteCapacityUnits: 10
-    }
-};
+app.use('/', router);
 
-dynamodb.createTable(params, function(err, data) {
-    if (err) {
-        console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("Created table. Table description JSON:", JSON.stringify(data, null, 2));
-    }
-});
+app.listen(PORT, () => {
+    console.log(`The Networks Server running on PORT ${PORT}!`);
+})

@@ -21,6 +21,7 @@ import { CryptoDetailsComponent } from '../components/CryptoDetails/cryptoDetail
 //injectables
 import { StockData } from '../injectables/stockdata';
 import { CrytoData } from '../injectables/Cryptodata';
+import  { backendRoutes } from '../injectables/backendRoutes';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CrytoData } from '../injectables/Cryptodata';
   providers: [
     StockData,
     CrytoData,
+    backendRoutes,
   ],
   bootstrap: [AppComponent]
 })
