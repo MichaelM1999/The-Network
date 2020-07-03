@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 //   })
 
 
-app.use('/', router);
+app.use(routes);
 
 app.listen(PORT, () => {
     console.log(`The Networks Server running on PORT ${PORT}!`);
