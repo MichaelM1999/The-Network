@@ -11,13 +11,13 @@ app.use(bodyParser.json());
 
 
 // Serve only the static files form the dist directory
-// const distDir = __dirname + "/dist/";
-// app.use(express.static(distDir));
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
-// /* final catch-all route to index.html defined last */
-// app.get('/*', (req, res) => {
-//     res.sendFile(__dirname + "/dist/"+'/index.html');
-//   })
+/* final catch-all route to index.html defined last */
+app.get('/*', (req, res) => {
+    res.sendFile('/Users/michaelmariea/Desktop/personal-projects/The-Network/The-Network/src/index.html');
+  })
 
 
 app.use(routes);

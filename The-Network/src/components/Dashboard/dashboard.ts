@@ -10,8 +10,8 @@ export class Dashboard {
     constructor(private API: backendRoutes ){
 
     }
-    helloroute(){
-        this.API.helloroute().subscribe((res => {
+    helloroute(input){
+        this.API.helloroute(input).subscribe((res => {
             if (res['error']){
                 console.log(res['error'])
             }else {

@@ -10,7 +10,7 @@ export class backendRoutes {
     constructor(private http: HttpClient){
 
     }
-    helloroute(){
-        return this.http.get(this.uri + `/api/user/hello`);
+    helloroute(input){
+        return this.http.post(this.uri + `/api/user/hello`, input);
     }
 }
