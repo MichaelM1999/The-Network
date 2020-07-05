@@ -9,8 +9,10 @@ router.route('/hello').post((req, res) => {
 router.route('/login').post((req, res) => {
     if (req.body.password === "Mm64088031!"){
         res.json('Approved');
+        console.log("welcome " + req.body.username + '!');
     } else {
         res.json('Denied');
+        console.log("Inncorect admin password!");
     }
 })
 module.exports = router;

@@ -1,0 +1,41 @@
+const router = require("express").Router();
+const Models = require("../../models/index");
+
+// matches /api/stocks/add
+router.route('/add').post((req, res) => {
+    Models.Stock.exists({stock_name: req.body.stock, admin: req.body.admin}).then(data => {
+        console.log(data, "data herre")
+      if (data === true) {
+          res.send({err: "you're already following"})
+          console.log("already here")
+          
+        }
+        else {
+          console.log(req.body, 'HERE IT IS ');
+          let stock = {
+            stock_name: req.body.stock,
+            admin: req.body.admin
+          }
+    
+          Models.Stock.create(stock).then(data => res.send(data))
+          .catch(err => res.status(422).json(err));
+          console.log("stock added to watchlist");
+        }
+    });
+})
+router.route('/delete').post((req, res) =>{
+    Models.Stock.deleteOne({admin: req.body.admin, stock_name: req.body.stock_name}).then(data =>{
+      res.send(data)
+      // .catch(err => res.status(422).json(err));
+      console.log("deleteing", req.body.stock_name);
+    })
+})
+router.route('/find').post((req, res) => {
+    console.log('hellooooo', req.body.admin);
+  Models.Stock.find({admin: req.body.admin}).then(data => {
+    console.log(data)
+    res.send(data);
+  })
+});
+
+module.exports = router;
