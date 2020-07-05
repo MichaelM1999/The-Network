@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,5 +12,8 @@ export class backendRoutes {
     }
     helloroute(input){
         return this.http.post(this.uri + `/api/user/hello`, input);
+    }
+    loginRoute(user) {
+        return this.http.post(this.uri + `/api/user/login`, user);
     }
 }

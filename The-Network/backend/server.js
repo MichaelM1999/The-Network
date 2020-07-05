@@ -19,7 +19,6 @@ app.get('/*', (req, res) => {
     res.sendFile('/Users/michaelmariea/Desktop/personal-projects/The-Network/The-Network/src/index.html');
   })
 
-
 app.use(routes);
 
 app.listen(PORT, () => {
