@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const cryptoSchema = new Schema({
   crypto_name: { type: String, required: true },
+  notes: { type: String, required: false },
   admin: {type: String, required: true},
 });
 

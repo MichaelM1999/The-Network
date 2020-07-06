@@ -31,10 +31,15 @@ router.route('/delete').post((req, res) =>{
     })
 })
 router.route('/find').post((req, res) => {
-    console.log('hellooooo', req.body.admin);
-  Models.Stock.find({admin: req.body.admin}).then(data => {
-    console.log(data)
-    res.send(data);
+    console.log('hellooooo finding all followed stocks');
+  Models.Stock.find({admin: true}).then(data => {
+    console.log(data);
+    if (data){
+      console.log(data)
+      res.send(data);
+    } else {
+      res.send("no stocks followed");
+    }
   })
 });
 

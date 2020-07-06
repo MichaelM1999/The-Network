@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const stockSchema = new Schema({
   stock_name: { type: String, required: true },
+  notes: { type: String, required: false },
   admin: {type: String, required: true},
 });
 

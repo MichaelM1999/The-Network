@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { backendRoutes } from '../../injectables/backendRoutes';
 
 @Component ({
     selector: 'Stocks',
@@ -6,29 +7,22 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./stocks.scss']
 })
 export class Stocks implements OnInit{
+    constructor(private API:backendRoutes){
+
+    }
     Stocks:any
     User:any
     Defined: boolean
     ngOnInit(){
         this.User = sessionStorage.getItem('username');  
-        this.Stocks = [
-            {
-                symbol: 'NNA',
-                price:"3.45",
-                notes:'very good for dividends'
-            },
-            {
-                symbol: 'CEI',
-                price:".42",
-                notes:'big mistake'
-            },
-            {
-                symbol: 'F',
-                price:"5.56",
-                notes:'very good for dividends protected by government'
-            },
-        ]
-        this.Defined === true;
-        console.log(this.Stocks);
+        this.API.getFollowedStocks("getting Followed Stocks").subscribe((res => {
+            let results = res
+            if ( results[0] === undefined){
+                this.Defined = false
+            } else {
+                this.Stocks = res;
+                this.Defined = true
+            }
+        }))
     }
 }

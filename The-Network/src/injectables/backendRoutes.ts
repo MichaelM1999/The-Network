@@ -16,4 +16,7 @@ export class backendRoutes {
     loginRoute(user) {
         return this.http.post(this.uri + `/api/user/login`, user);
     }
+    getFollowedStocks(info) {
+        return this.http.post(this.uri + `/api/stocks/find`, info);
+    }
 }
