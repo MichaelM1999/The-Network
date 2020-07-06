@@ -1,5 +1,5 @@
 <div>
-    <h1 class="MainTitle">{{ returnedStock?.name }}</h1>
+    <h1 class="MainTitle">{{ returnedStock?.name | uppercase}}</h1>
     <div class="infoBox" *ngIf="returnedStock">
         <div class="infoWrap stockInfoBox">
             <h2 class="stocktxt">Current Value: {{returnedStock?.currentValue | currency:'USD' : 'symbol' : '1.3-5'}}</h2>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { StockData } from '../../injectables/stockdata';
+import { backendRoutes } from '../../injectables/backendRoutes';
 
 @Component ({
     selector: 'Graph',
@@ -10,16 +11,16 @@ import { StockData } from '../../injectables/stockdata';
 export class Graph implements OnInit{
     public returnedStock:any
     public Title = '7-Days';
+    public addingStock = '';
     chart = [];
     chart2 = [];
     graphed = false;
-
-    constructor(private StockData:StockData){
-
+    followBox = false;
+    allowedFollow = false
+    constructor(private StockData:StockData, private API: backendRoutes){
     }
 
     ngOnInit (){
-        
     }
     graphSwitch(graphValue){
         if (graphValue === 7){
@@ -70,6 +71,10 @@ export class Graph implements OnInit{
                 }) 
     }
     handleSearch(searchItem){
+        let admin = sessionStorage.getItem("username");
+        if (admin) {
+            this.allowedFollow = true;
+        }
         const priceArry = []
         const dateArry = []
         const reversePriceArry = []
@@ -121,4 +126,27 @@ export class Graph implements OnInit{
             }
         }
     )}
+    followDetails(searchItem){
+    this.followBox = true;
+    this.addingStock = searchItem
+    }
+    handleFollow(notes){
+        console.log( typeof this.addingStock);
+        let STOCK = {
+            stock_name: this.addingStock,
+            notes: notes['notesInput'],
+            admin: sessionStorage.getItem('username')
+        }
+        this.API.followStock(STOCK).subscribe((res => {
+            if(res['err']){
+                window.alert(STOCK.stock_name + " has already been followed");
+                this.addingStock = '';
+                this.followBox = false;
+            } else {
+                window.location.href = '/src/stocks';
+                this.addingStock = '';
+                this.followBox = false;
+            }
+        }))
+    }
 }

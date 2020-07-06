@@ -3,20 +3,19 @@ const Models = require("../../models/index");
 
 // matches /api/stocks/add
 router.route('/add').post((req, res) => {
-    Models.Stock.exists({stock_name: req.body.stock, admin: req.body.admin}).then(data => {
+    Models.Stock.exists({stock_name: req.body.stock_name}).then(data => {
         console.log(data, "data herre")
       if (data === true) {
           res.send({err: "you're already following"})
           console.log("already here")
-          
         }
         else {
           console.log(req.body, 'HERE IT IS ');
           let stock = {
-            stock_name: req.body.stock,
-            admin: req.body.admin
+            stock_name: req.body.stock_name,
+            notes: req.body.notes,
+            admin: req.body.admin,
           }
-    
           Models.Stock.create(stock).then(data => res.send(data))
           .catch(err => res.status(422).json(err));
           console.log("stock added to watchlist");
@@ -32,7 +31,7 @@ router.route('/delete').post((req, res) =>{
 })
 router.route('/find').post((req, res) => {
     console.log('hellooooo finding all followed stocks');
-  Models.Stock.find({admin: true}).then(data => {
+  Models.Stock.find({admin: 'm'}).then(data => {
     console.log(data);
     if (data){
       console.log(data)
