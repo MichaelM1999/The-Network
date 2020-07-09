@@ -23,4 +23,8 @@ export class backendRoutes {
         console.log(Stock);
         return this.http.post(this.uri + `/api/stocks/add`, Stock);
     }
+    followCrypto(CRYPTO) {
+        console.log(CRYPTO);
+        return this.http.post(this.uri + `api/crypto/add`, CRYPTO);
+    }
 }

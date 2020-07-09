@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CrytoData } from '../../injectables/Cryptodata';
 import { Chart } from 'chart.js';
+import { backendRoutes } from '../../injectables/backendRoutes';
 
 @Component ({
     selector: 'Crypto',
@@ -10,10 +11,13 @@ import { Chart } from 'chart.js';
 export class Crypto {
     public cryptoData:any;
     public Title = "7-Days";
+    public addingCrypto = '';
     graphed = false;
+    followBox = false;
+    allowedFollow = false
     chart = [];
     chart2 = [];
-    constructor(private CryptoData:CrytoData){
+    constructor(private CryptoData:CrytoData, private API:backendRoutes){
 
     }
     graphSwitch(graphValue){
@@ -65,6 +69,10 @@ export class Crypto {
                 }) 
     }
     handleSearch(searchItem){
+        let admin = sessionStorage.getItem("username");
+        if (admin) {
+            this.allowedFollow = true;
+        }
         let pricesARRY;
         let dateARRY;
         let newDATES = [];
@@ -108,5 +116,28 @@ export class Crypto {
             this.graph(this.cryptoData.weeklyGraphInfo);
         }
         })
+    }
+    followDetails(searchItem){
+        this.followBox = true;
+        this.addingCrypto = searchItem
+    }
+    handleFollow(notes){
+        console.log( typeof this.addingCrypto);
+        let CRYPTO = {
+            crypto_name: this.addingCrypto,
+            notes: notes['notesInput'],
+            admin: sessionStorage.getItem('username')
+        }
+        this.API.followCrypto(CRYPTO).subscribe((res => {
+            if(res['err']){
+                window.alert(CRYPTO.crypto_name + " has already been followed");
+                this.addingCrypto = '';
+                this.followBox = false;
+            } else {
+                window.location.href = '/src/stocks';
+                this.addingCrypto = '';
+                this.followBox = false;
+            }
+        }))
     }
 }
