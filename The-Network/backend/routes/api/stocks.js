@@ -23,7 +23,7 @@ router.route('/add').post((req, res) => {
     });
 })
 router.route('/delete').post((req, res) =>{
-    Models.Stock.deleteOne({admin: req.body.admin, stock_name: req.body.stock_name}).then(data =>{
+    Models.Stock.deleteOne({stock_name: req.body.stock_name}).then(data =>{
       res.send(data)
       // .catch(err => res.status(422).json(err));
       console.log("deleteing", req.body.stock_name);

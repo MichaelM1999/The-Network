@@ -23,5 +23,17 @@ router.route('/add').post((req, res) => {
         }
     });
 })
+router.route('/find').post((req, res) => {
+  console.log('Finding all followed Cryotocurrency');
+Models.Crypto.find({admin: 'm'}).then(data => {
+  console.log(data);
+  if (data){
+    console.log(data)
+    res.send(data);
+  } else {
+    res.send("no Cryptos are followed");
+  }
+})
+});
 
 module.exports = router;

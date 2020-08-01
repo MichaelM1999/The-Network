@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { backendRoutes } from '../../injectables/backendRoutes';
 
 @Component ({
     selector: 'CryptoWL',
@@ -6,29 +7,22 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./cryptoWL.scss'],
 })
 export class CryptoWL implements OnInit{
+    constructor(private API:backendRoutes){
+
+    }
     Cryptos:any
     User:any
     Defined: boolean
     ngOnInit(){
         this.User = sessionStorage.getItem('username');  
-        this.Cryptos = [
-            {
-                symbol: 'BTC',
-                price:"3.45",
-                notes:'very good for dividends'
-            },
-            {
-                symbol: 'ETH',
-                price:".42",
-                notes:'big mistake'
-            },
-            {
-                symbol: 'XRP',
-                price:"5.56",
-                notes:'very good for dividends protected by government'
-            },
-        ]
-        this.Defined === true;
-        console.log(this.Cryptos);
+        this.API.getFollowedCrypto("getting Followed Cryptos").subscribe((res => {
+            let results = res
+            if ( results[0] === undefined){
+                this.Defined = false
+            } else {
+                this.Cryptos = res;
+                this.Defined = true
+            }
+        }))
     }
 }

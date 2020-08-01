@@ -1,6 +1,6 @@
 <div class="stockbx">
     <div class="innerbox">
-        <h3 class="stockName" #stockName>Crypto Name: {{ Crypto.symbol }}</h3>
+        <h3 class="stockName" #stockName>Crypto Name: {{ Crypto.crypto_name | uppercase }}</h3>
         <div class="infoWrap">
             <p class="stocksymbol stocktxt">The Networks Notes: {{ Crypto.notes }}</p>
         </div>

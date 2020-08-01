@@ -19,6 +19,9 @@ export class backendRoutes {
     getFollowedStocks(info) {
         return this.http.post(this.uri + `/api/stocks/find`, info);
     }
+    getFollowedCrypto(info) {
+        return this.http.post(this.uri + `/api/crypto/find`, info);
+    }
     followStock(Stock) {
         console.log(Stock);
         return this.http.post(this.uri + `/api/stocks/add`, Stock);
