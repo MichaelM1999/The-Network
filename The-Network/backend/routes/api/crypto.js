@@ -4,7 +4,7 @@ const Models = require("../../models/index");
 //crypto add route
 // matches /api/crypto/add
 router.route('/add').post((req, res) => {
-    Models.Stock.exists({crypto_name: req.body.crypto_name}).then(data => {
+    Models.Crypto.exists({crypto_name: req.body.crypto_name}).then(data => {
         console.log(data, "data herre")
       if (data === true) {
           res.send({err: "you're already following"})
@@ -12,14 +12,14 @@ router.route('/add').post((req, res) => {
         }
         else {
           console.log(req.body, 'HERE IT IS ');
-          let stock = {
+          let CRYPTO = {
             crypto_name: req.body.crypto_name,
             notes: req.body.notes,
             admin: req.body.admin,
           }
-          Models.Stock.create(stock).then(data => res.send(data))
+          Models.Crypto.create(CRYPTO).then(data => res.send(data))
           .catch(err => res.status(422).json(err));
-          console.log("Crypto added to watchlist");
+          console.log(CRYPTO.crypto_name + " added to watchlist");
         }
     });
 })

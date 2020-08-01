@@ -25,6 +25,6 @@ export class backendRoutes {
     }
     followCrypto(CRYPTO) {
         console.log(CRYPTO);
-        return this.http.post(this.uri + `api/crypto/add`, CRYPTO);
+        return this.http.post(this.uri + `/api/crypto/add`, CRYPTO);
     }
 }

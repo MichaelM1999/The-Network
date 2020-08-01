@@ -128,13 +128,14 @@ export class Crypto {
             notes: notes['notesInput'],
             admin: sessionStorage.getItem('username')
         }
+        console.log(CRYPTO);
         this.API.followCrypto(CRYPTO).subscribe((res => {
             if(res['err']){
                 window.alert(CRYPTO.crypto_name + " has already been followed");
                 this.addingCrypto = '';
                 this.followBox = false;
             } else {
-                window.location.href = '/src/stocks';
+                window.location.href = '/src/crypto';
                 this.addingCrypto = '';
                 this.followBox = false;
             }
