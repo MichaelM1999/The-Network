@@ -2,7 +2,7 @@
     <h1 class="MainTitle" style="margin-top: 2%;">Welcome to The Networks Crypto Watchlist</h1>
 </div>
 <div *ngIf="this.Defined === false" class="nonFollowedBox">
-    <h1>You are currently not following any stocks! click here to find some</h1>
+    <h1>You are currently not following any Cryptocurrency! click here to find some</h1>
         <button class="searchbuttonA" [routerLink]="['/home']">HERE!</button>
 </div>
 <crypto-thumbnail *ngFor="let Crypto of Cryptos" [Crypto]='Crypto'></crypto-thumbnail>
