@@ -5,6 +5,7 @@ const stockSchema = new Schema({
   stock_name: { type: String, required: true },
   notes: { type: String, required: false },
   admin: {type: String, required: true},
+  Crypto: {type: Boolean, required: true},
 });
 
 const Stock = mongoose.model("Stock", stockSchema);

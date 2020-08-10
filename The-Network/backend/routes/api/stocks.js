@@ -15,6 +15,7 @@ router.route('/add').post((req, res) => {
             stock_name: req.body.stock_name,
             notes: req.body.notes,
             admin: req.body.admin,
+            Crypto: false,
           }
           Models.Stock.create(stock).then(data => res.send(data))
           .catch(err => res.status(422).json(err));
@@ -31,7 +32,7 @@ router.route('/delete').post((req, res) =>{
 })
 router.route('/find').post((req, res) => {
     console.log('hellooooo finding all followed stocks');
-  Models.Stock.find({admin: 'm'}).then(data => {
+  Models.Stock.find({Crypto: false}).then(data => {
     console.log(data);
     if (data){
       console.log(data)

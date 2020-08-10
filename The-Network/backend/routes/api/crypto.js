@@ -16,6 +16,7 @@ router.route('/add').post((req, res) => {
             crypto_name: req.body.crypto_name,
             notes: req.body.notes,
             admin: req.body.admin,
+            Crypto: true,
           }
           Models.Crypto.create(CRYPTO).then(data => res.send(data))
           .catch(err => res.status(422).json(err));
@@ -25,7 +26,7 @@ router.route('/add').post((req, res) => {
 })
 router.route('/find').post((req, res) => {
   console.log('Finding all followed Cryotocurrency');
-Models.Crypto.find({admin: 'm'}).then(data => {
+Models.Crypto.find({Crypto: true}).then(data => {
   console.log(data);
   if (data){
     console.log(data)
