@@ -7,7 +7,7 @@ router.route('/hello').post((req, res) => {
     console.log("helllooo");
 })
 router.route('/login').post((req, res) => {
-    if (req.body.password === "Mm64088031!"){
+    if (req.body.password === "MakingMillions2020" && req.body.username === "NetworkAdmin"){
         res.json('Approved');
         console.log("welcome " + req.body.username + '!');
     } else {
