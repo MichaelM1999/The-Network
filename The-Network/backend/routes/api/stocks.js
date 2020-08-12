@@ -3,7 +3,8 @@ const Models = require("../../models/index");
 
 // matches /api/stocks/add
 router.route('/add').post((req, res) => {
-    Models.Stock.exists({stock_name: req.body.stock_name}).then(data => {
+  let capsName = req.body.stock_name.toUpperCase();
+    Models.Stock.exists({stock_name: capsName}).then(data => {
         console.log(data, "data herre")
       if (data === true) {
           res.send({err: "you're already following"})
@@ -12,7 +13,7 @@ router.route('/add').post((req, res) => {
         else {
           console.log(req.body, 'HERE IT IS ');
           let stock = {
-            stock_name: req.body.stock_name,
+            stock_name: capsName,
             notes: req.body.notes,
             admin: req.body.admin,
             Crypto: false,

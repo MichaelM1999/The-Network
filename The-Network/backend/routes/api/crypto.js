@@ -4,7 +4,8 @@ const Models = require("../../models/index");
 //crypto add route
 // matches /api/crypto/add
 router.route('/add').post((req, res) => {
-    Models.Crypto.exists({crypto_name: req.body.crypto_name}).then(data => {
+  let capsName = req.body.crypto_name.toUpperCase();
+    Models.Crypto.exists({crypto_name: capsName}).then(data => {
         console.log(data, "data herre")
       if (data === true) {
           res.send({err: "you're already following"})
@@ -13,7 +14,7 @@ router.route('/add').post((req, res) => {
         else {
           console.log(req.body, 'HERE IT IS ');
           let CRYPTO = {
-            crypto_name: req.body.crypto_name,
+            crypto_name: capsName,
             notes: req.body.notes,
             admin: req.body.admin,
             Crypto: true,

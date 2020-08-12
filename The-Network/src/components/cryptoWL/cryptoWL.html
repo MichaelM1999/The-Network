@@ -3,6 +3,6 @@
 </div>
 <div *ngIf="this.Defined === false" class="nonFollowedBox">
     <h1>You are currently not following any Cryptocurrency! click here to find some</h1>
-        <button class="searchbuttonA" [routerLink]="['/home']">HERE!</button>
+        <button class="searchbuttonA" [routerLink]="['/cryptoSearch']">HERE!</button>
 </div>
 <crypto-thumbnail *ngFor="let Crypto of Cryptos" [Crypto]='Crypto'></crypto-thumbnail>
